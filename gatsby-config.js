@@ -1,10 +1,3 @@
-var netlifyCmsPaths = {
-  resolve: `gatsby-plugin-netlify-cms-paths`,
-  options: {
-    cmsConfig: `/static/admin/config.yml`,
-  },
-}
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
@@ -16,6 +9,14 @@ module.exports = {
     },
   },
   plugins: [
+    // Netlify CMS image location
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+          path: `${__dirname}/static/img`,
+          name: 'images',
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -30,15 +31,11 @@ module.exports = {
         name: `assets`,
       },
     },
-    // netlifyCMSPaths allows Netlify CMS images to use gatsby image
-    // Including in your Gatsby plugins will transform any paths in your frontmatter
-    netlifyCmsPaths,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          // Including in your Remark plugins will transform any paths in your markdown body
-          netlifyCmsPaths,
+          'gatsby-remark-relative-images',
           {
             resolve: `gatsby-remark-images`,
             options: {
