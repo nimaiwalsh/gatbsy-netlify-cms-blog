@@ -35,6 +35,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          // Needed to reference Netlify CMS images
           'gatsby-remark-relative-images',
           {
             resolve: `gatsby-remark-images`,
